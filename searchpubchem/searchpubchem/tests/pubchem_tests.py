@@ -1,4 +1,4 @@
-from NCBI import pubchem
+from searchpubchem import pubchem
 import unittest
 
 
