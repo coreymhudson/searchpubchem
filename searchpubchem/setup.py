@@ -6,6 +6,6 @@ setup(name='searchpubchem',
       url='https://github.com/coreymhudson/searchpubchem',
       author='Corey M. Hudson',
       author_email='coreymhudson@gmail.com',
-      licence='BSD 2-clause',
+      license='BSD 2-clause',
       packages=['searchpubchem'],
       zip_safe=False)
