@@ -1,0 +1,231 @@
+<?xml version="1.0" ?>
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://pubchem.ncbi.nlm.nih.gov/pug_view"
+  targetNamespace="http://pubchem.ncbi.nlm.nih.gov/pug_view"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+
+<!--
+ $Id: pug_view_data.xsd 461227 2015-03-06 22:16:48Z thiessen $
+ ===========================================================================
+
+                            PUBLIC DOMAIN NOTICE
+               National Center for Biotechnology Information
+
+  This software/database is a "United States Government Work" under the
+  terms of the United States Copyright Act.  It was written as part of
+  the author's official duties as a United States Government employee and
+  thus cannot be copyrighted.  This software/database is freely available
+  to the public for use. The National Library of Medicine and the U.S.
+  Government have not placed any restriction on its use or reproduction.
+
+  Although all reasonable efforts have been taken to ensure the accuracy
+  and reliability of the software and data, the NLM and the U.S.
+  Government do not and cannot warrant the performance or results that
+  may be obtained by using this software or data. The NLM and the U.S.
+  Government disclaim all warranties, express or implied, including
+  warranties of performance, merchantability or fitness for any particular
+  purpose.
+
+  Please cite the author in any work or product based on this material.
+
+ ===========================================================================
+
+  Schema for PubChem PUG View response
+
+  by NCBI PubChem Group
+
+  National Center for Biotechnology Information
+  National Institutes of Health
+  Bethesda, MD 20894 USA
+
+ ===========================================================================
+-->
+
+<xs:element name="Fault">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="Code" type="xs:string"/>
+      <xs:element name="Message" type="xs:string"/>
+      <xs:element name="Details" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+  
+<xs:element name="Records">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="Record" maxOccurs="unbounded"/> 
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Record">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="RecordType" type="xs:string"/> 
+      <xs:element name="RecordNumber" type="xs:int"/> 
+      <xs:element name="AvailableViews" type="xs:string" minOccurs="0" maxOccurs="unbounded"/> 
+      <xs:element ref="Information" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="Section" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="Reference" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Section">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="TOCHeading" type="xs:string"/>
+        <xs:element name="TOCID" type="xs:int"/>
+      </xs:choice>
+      <xs:element name="Description" type="xs:string" minOccurs="0"/> 
+      <xs:element name="Views" type="xs:string" minOccurs="0" maxOccurs="unbounded"/> 
+      <xs:element name="HintGroupSubsectionsByReference" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="HintEmbeddedHTML" type="xs:boolean" minOccurs="0"/>
+      <xs:element ref="Information" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="Section" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Information">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="ReferenceNumber" type="xs:int"/>
+      <xs:element name="Name" type="xs:string" minOccurs="0"/>
+      <xs:element name="Description" type="xs:string" minOccurs="0"/>
+      <xs:element name="Reference" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="URL" type="xs:string" minOccurs="0"/>
+      <xs:choice minOccurs="0">
+        <xs:element name="NumValue" type="xs:double"/>
+        <xs:element name="NumValueList" type="xs:double" maxOccurs="unbounded"/>
+        <xs:element name="DateValue" type="xs:string"/>
+        <xs:element name="DateValueList" type="xs:string" maxOccurs="unbounded"/>
+        <xs:element name="BoolValue" type="xs:boolean"/>
+        <xs:element name="BoolValueList" type="xs:boolean" maxOccurs="unbounded"/>
+        <xs:element name="StringValue" type="xs:string"/>
+        <xs:element name="StringValueList" type="xs:string" maxOccurs="unbounded"/>
+        <xs:element name="BinaryValue" type="xs:base64Binary"/>
+        <xs:element name="BinaryValueList" type="xs:base64Binary" maxOccurs="unbounded"/>
+        <xs:element name="ExternalDataURL" type="xs:string"/>
+        <xs:element name="ExternalDataURLList" type="xs:string" maxOccurs="unbounded"/>
+      </xs:choice>
+      <xs:element name="ValueUnit" type="xs:string" minOccurs="0"/>
+      <xs:element name="ExternalDataMimeType" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Reference">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="ReferenceNumber" type="xs:int"/>
+      <xs:element name="SourceName" type="xs:string"/>
+      <xs:element name="SourceID" type="xs:string" minOccurs="0"/>
+      <xs:element name="Name" type="xs:string" minOccurs="0"/>
+      <xs:element name="Description" type="xs:string" minOccurs="0"/>
+      <xs:element name="URL" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<!-- specialized containers -->
+
+<xs:element name="Neighbors">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="RecordType" type="xs:string"/> 
+      <xs:element name="RecordNumber" type="xs:int"/>
+      <xs:element name="NeighborsOfType" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Type" type="xs:string"/>
+            <xs:element name="IDList" type="xs:int" maxOccurs="unbounded"/>
+            <xs:element name="NameList" type="xs:string" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Structure">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="RecordType" type="xs:string"/> 
+      <xs:element name="RecordNumber" type="xs:int"/>
+			<xs:element name="URL" type="xs:string"/>
+			<xs:element name="NumberOfStructures" type="xs:int"/>
+      <xs:element name="Structures" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="MMDB_ID" type="xs:int"/>
+            <xs:element name="PDB_ID" type="xs:string" minOccurs="0"/>
+            <xs:element name="URL" type="xs:string"/>
+            <xs:element name="ImageURL" type="xs:string"/>
+            <xs:element name="Description" type="xs:string" minOccurs="0"/>
+            <xs:element name="Taxonomy" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:int"/>
+                  <xs:element name="Name" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="SourceCategories">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="RecordType" type="xs:string"/> 
+      <xs:element name="RecordNumber" type="xs:int"/>
+      <xs:element name="Categories" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Category" type="xs:string"/>
+            <xs:element name="URL" type="xs:string"/>
+            <xs:element name="Sources" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="SID" type="xs:int"/>
+                  <xs:element name="SourceName" type="xs:string"/>
+                  <xs:element name="SourceURL" type="xs:string" minOccurs="0"/>
+                  <xs:element name="RegistryID" type="xs:string"/>
+                  <xs:element name="SourceRecordURL" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Literature">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="RecordType" type="xs:string"/> 
+      <xs:element name="RecordNumber" type="xs:int"/>
+      <xs:element name="AllURL" type="xs:string"/>
+      <xs:element name="Subheadings" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Subheading" type="xs:string"/>
+            <xs:element name="SubheadingURL" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>
