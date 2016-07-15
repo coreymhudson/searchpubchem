@@ -11,6 +11,6 @@ searchpubchem is a tool designed to extract chemical information directly from N
 
 ## Team
 
-[![Corey M. Hudson](https://avatars3.githubusercontent.com/u/6139410?v=3&u=eba4d10795f651f1e665914cde4908af36523267&s=140)](https://github.com/coreymhudson)
+[![Corey M. Hudson](https://avatars3.githubusercontent.com/u/6139410?v=3&u=eba4d10795f651f1e665914cde4908af36523267&s=140)](https://github.com/coreymhudson) |
 ---
 [Corey M. Hudson](https://github.com/coreymhudson) |
