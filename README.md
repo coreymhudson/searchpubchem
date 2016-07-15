@@ -3,7 +3,7 @@ Collect PubChem data directly. This tool contains a variety of ways to interact 
 
 ## Comparison with biopython
 
-*See [biopython](https://github.com/biopython/biopython.github.io/)
+* See [biopython](https://github.com/biopython/biopython.github.io/)
 
 biopython contains a variety of tools for interacting with NCBI databases. I found, however, that the methods of query were non-exhaustive and that the methods for preprocessessing XML and downloading multiple file-types did not meet my particular goals.
 
